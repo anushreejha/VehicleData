@@ -1,3 +1,7 @@
-const nextConfig = {};
+const basePath = '/VehicleData'; 
+const assetPrefix = '/VehicleData/'; 
 
-module.exports = nextConfig;
+module.exports = {
+  basePath,
+  assetPrefix,
+};
