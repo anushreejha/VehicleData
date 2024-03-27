@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -24,6 +24,24 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+@media (max-width: 768px) {
+  :root {
+    --items-per-page: 10; 
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --items-per-page: 15; 
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --items-per-page: 20; 
+  }
 }
 
 @layer utilities {
