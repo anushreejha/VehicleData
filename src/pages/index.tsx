@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PaginatedTable from '../components/PaginatedTable';
-import SearchForm from '../components/SearchForm';
 
 const IndexPage: React.FC = () => {
   const [vehicles, setVehicles] = useState<any[]>([]);
@@ -13,8 +12,9 @@ const IndexPage: React.FC = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
-  const handleSearch = (query: string) => {
-    setSearchTerm(query);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchTerm(value);
   };
 
   const filteredVehicles = vehicles.filter(vehicle => {
@@ -27,7 +27,13 @@ const IndexPage: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Vehicle Data</h1>
-        <SearchForm onSearch={handleSearch} />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="w-64 rounded-md px-4 py-2 border border-gray-300 focus:outline-none focus:border-blue-500"
+        />
       </div>
       <div className="mt-8">
         <PaginatedTable data={filteredVehicles} itemsPerPage={10} />
