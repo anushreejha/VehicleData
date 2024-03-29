@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 
-interface Vehicle {
-  [key: string]: string | number;
-}
-
 interface Props {
-  data: Vehicle[];
+  data: any[];
   itemsPerPage: number;
+  onSearch: (query: string) => void;
+  onClear: () => void;
 }
 
-const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage }) => {
+const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -34,18 +32,18 @@ const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage }) => {
     <div className="mt-8">
       <table className="w-full border-collapse">
         <thead>
-          <tr>
+          <tr className="bg-gray-200">
             {displayData.length > 0 &&
               Object.keys(displayData[0]).map((key) => (
-                <th key={key} className="px-4 py-2 bg-gray-200 text-left">{key}</th>
+                <th key={key} className="px-4 py-2">{key}</th>
               ))}
           </tr>
         </thead>
         <tbody>
           {displayData.map((vehicle, index) => (
-            <tr key={index}>
+            <tr key={index} className="border-b">
               {Object.values(vehicle).map((value, index) => (
-                <td key={index} className="px-4 py-2 border">{value}</td>
+                <td key={index} className="px-4 py-2 border">{String(value)}</td>
               ))}
             </tr>
           ))}

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 interface Props {
   onSearch: (query: string) => void;
+  onClear: () => void;
 }
 
-const SearchForm: React.FC<Props> = ({ onSearch }) => {
+const SearchForm: React.FC<Props> = ({ onSearch, onClear }) => {
   const [query, setQuery] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,6 +17,11 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
     onSearch(query);
   };
 
+  const handleClear = () => {
+    setQuery('');
+    onClear();
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -25,6 +31,7 @@ const SearchForm: React.FC<Props> = ({ onSearch }) => {
         onChange={handleInputChange}
       />
       <button type="submit">Search</button>
+      <button type="button" onClick={handleClear}>Clear</button>
     </form>
   );
 };
