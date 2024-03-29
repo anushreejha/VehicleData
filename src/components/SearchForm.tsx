@@ -23,14 +23,15 @@ const SearchForm: React.FC<Props> = ({ onSearch, onClear }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex items-center">
       <input
         type="text"
         placeholder="Search..."
         value={query}
         onChange={handleInputChange}
+        className="mr-3"
       />
-      <button type="submit">Search</button>
+      <button type="submit" className="mr-3">Search</button>
       <button type="button" onClick={handleClear}>Clear</button>
     </form>
   );

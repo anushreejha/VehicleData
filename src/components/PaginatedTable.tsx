@@ -34,8 +34,11 @@ const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear
         <thead>
           <tr className="bg-gray-200">
             {displayData.length > 0 &&
-              Object.keys(displayData[0]).map((key) => (
-                <th key={key} className="px-4 py-2">{key}</th>
+              Object.keys(displayData[0]).map((key, index) => (
+                <>
+                  <th key={`${key}-${index}`} className="px-4 py-2">{key}</th>
+                  {index < Object.keys(displayData[0]).length - 1 && <th className="px-4" style={{ width: '70px' }}></th>}
+                </>
               ))}
           </tr>
         </thead>
@@ -43,7 +46,10 @@ const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear
           {displayData.map((vehicle, index) => (
             <tr key={index} className="border-b">
               {Object.values(vehicle).map((value, index) => (
-                <td key={index} className="px-4 py-2 border">{String(value)}</td>
+                <>
+                  <td key={`${value}-${index}`} className="px-4 py-2 border">{String(value)}</td>
+                  {index < Object.values(vehicle).length - 1 && <td className="px-4" style={{ width: '70px' }}></td>}
+                </>
               ))}
             </tr>
           ))}

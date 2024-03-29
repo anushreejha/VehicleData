@@ -32,8 +32,12 @@ const IndexPage: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Vehicle Data</h1>
+        {/* Use a spacer to push the search bar to the right */}
+        <div></div>
         <SearchForm onSearch={handleSearch} onClear={handleClearSearch} />
       </div>
+      {/* Insert a blank row */}
+      <div style={{ height: '60px' }}></div>
       <div className="mt-8">
         <PaginatedTable data={filteredVehicles} itemsPerPage={10} onSearch={handleSearch} onClear={handleClearSearch} />
       </div>
