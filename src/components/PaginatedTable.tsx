@@ -10,11 +10,13 @@ interface Props {
 const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const updatedItemsPerPage = itemsPerPage * 2;
+
+  const startIndex = (currentPage - 1) * updatedItemsPerPage;
+  const endIndex = startIndex + updatedItemsPerPage;
   const displayData = data.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(data.length / updatedItemsPerPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -44,7 +46,7 @@ const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear
         </thead>
         <tbody>
           {displayData.map((vehicle, index) => (
-            <tr key={index} className="border-b">
+            <tr key={index} className={index === 0 ? "bg-gray-200" : "border-b"}>
               {Object.values(vehicle).map((value, index) => (
                 <>
                   <td key={`${value}-${index}`} className="px-4 py-2 border">{String(value)}</td>
@@ -56,6 +58,7 @@ const PaginatedTable: React.FC<Props> = ({ data, itemsPerPage, onSearch, onClear
         </tbody>
       </table>
       <div className="mt-4"></div>
+      <div className="mt-8"></div>
       <div className="mt-8 flex justify-between">
         <button onClick={handlePreviousPage} disabled={currentPage === 1} className="px-4 py-2 bg-blue-500 text-white rounded-md disabled:opacity-50">Previous</button>
         <span className="px-4 py-2">{`Page ${currentPage} of ${totalPages}`}</span>

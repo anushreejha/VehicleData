@@ -28,19 +28,19 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --items-per-page: 10; 
+    --items-per-page: 20; 
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   :root {
-    --items-per-page: 15; 
+    --items-per-page: 30; 
   }
 }
 
 @media (min-width: 1025px) {
   :root {
-    --items-per-page: 20; 
+    --items-per-page: 40; 
   }
 }
 
